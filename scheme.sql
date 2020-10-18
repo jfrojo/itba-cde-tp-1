@@ -4,7 +4,7 @@ CREATE TABLE states (
 );
 
 CREATE TABLE products (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
     type TEXT NOT NULL,
 
@@ -12,7 +12,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE issues (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
     type TEXT NOT NULL,
 
@@ -20,15 +20,15 @@ CREATE TABLE issues (
 );
 
 CREATE TABLE companies (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     name TEXT UNIQUE,
     state_id BIGINT NOT NULL REFERENCES states(id),
     zip_code TEXT,
 
     UNIQUE(name, state_id, zip_code)
 );
-  
-CREATE TABLE complains (
+
+CREATE TABLE complaints (
     id BIGINT NOT NULL PRIMARY KEY,
     reception_date TIMESTAMPTZ,
     product_id BIGINT NOT NULL REFERENCES products(id),
