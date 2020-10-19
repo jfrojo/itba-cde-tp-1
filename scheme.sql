@@ -1,26 +1,26 @@
 CREATE TABLE states (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL CHECK (name ~* '[A-Z]{3,}') UNIQUE
+    name TEXT CHECK (name ~* '[A-Z]*') UNIQUE
 );
 
 CREATE TABLE products (
-    id SERIAL NOT NULL PRIMARY KEY,
-    name TEXT NOT NULL,
-    type TEXT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    type TEXT,
 
     UNIQUE(name, type)
 );
 
 CREATE TABLE issues (
-    id SERIAL NOT NULL PRIMARY KEY,
-    name TEXT NOT NULL,
-    type TEXT NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    type TEXT,
 
     UNIQUE(name, type)
 );
 
 CREATE TABLE companies (
-    id SERIAL NOT NULL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name TEXT UNIQUE,
     state_id BIGINT NOT NULL REFERENCES states(id),
     zip_code TEXT,
