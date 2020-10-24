@@ -3,7 +3,6 @@ FROM python:3.8-slim
 ADD ./database.py /
 ADD ./queries.py /
 
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 RUN python -m pip install --upgrade pip
 RUN pip3 install psycopg2-binary
 
