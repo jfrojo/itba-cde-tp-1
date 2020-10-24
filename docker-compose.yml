@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: "Dockerfile-etl"
     container_name: "etl"
+    networks: 
+        - etlnet
     restart: unless-stopped
     depends_on:
       db:
@@ -23,6 +25,8 @@ services:
         context: .
         dockerfile: "Dockerfile-db"
     container_name: "db"
+    networks: 
+      - etlnet
     restart: unless-stopped
     ports:
       - "5432:5432"
@@ -35,3 +39,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+
+networks:
+    etlnet:
+        name: etl-network

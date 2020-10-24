@@ -14,3 +14,5 @@ Sample queries images:
 docker build .
 
 Again to run the queries just run the previously built image in a new docker container.
+
+Note: In order for the queries container to be able to connect to the docker compose's database, the option '--network etl-network' must be added.
