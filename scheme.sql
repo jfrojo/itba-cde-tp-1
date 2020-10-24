@@ -1,6 +1,6 @@
 CREATE TABLE states (
     id SERIAL PRIMARY KEY,
-    name TEXT CHECK (name ~* '[A-Z]*') UNIQUE
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE products (
@@ -21,11 +21,7 @@ CREATE TABLE issues (
 
 CREATE TABLE companies (
     id SERIAL PRIMARY KEY,
-    name TEXT UNIQUE,
-    state_id BIGINT NOT NULL REFERENCES states(id),
-    zip_code TEXT,
-
-    UNIQUE(name, state_id, zip_code)
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE complaints (
@@ -34,7 +30,8 @@ CREATE TABLE complaints (
     product_id BIGINT NOT NULL REFERENCES products(id),
     issue_id BIGINT NOT NULL REFERENCES issues(id),
     company_id BIGINT NOT NULL REFERENCES companies(id),
-    tags TEXT,
+    state_id BIGINT REFERENCES states(id),
+    zip_code TEXT,
     consumer_narrative TEXT,
     company_public_response TEXT,
     company_consumer_response TEXT,
@@ -43,4 +40,15 @@ CREATE TABLE complaints (
     company_sent_date TIMESTAMPTZ,
     timely_response BOOLEAN,
     consumer_disputed BOOLEAN
+);
+
+CREATE TABLE tags (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE complaint_tags (
+    id SERIAL PRIMARY KEY,
+    complaint_id BIGINT NOT NULL REFERENCES complaints(id),
+    tag_id BIGINT NOT NULL REFERENCES tags(id)
 );

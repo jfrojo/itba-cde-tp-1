@@ -1,0 +1,15 @@
+FROM python:3.6-alpine
+
+ADD database.py /
+ADD etl.py /
+ADD exceptions.py /
+ADD query_provider.py /
+ADD utils.py /
+
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN python -m pip install --upgrade pip
+
+RUN pip3 install pandas
+RUN pip3 install psycopg2-binary
+
+CMD ["python3", "etl.py"]
