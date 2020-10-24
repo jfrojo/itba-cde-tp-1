@@ -25,7 +25,7 @@ class Etl:
     def __init__(self):
         hostname = os.environ['DATABASE_HOSTNAME']
         port = os.environ['DATABASE_PORT']
-        database_name = os.environ['DATABASE_DB']
+        database_name = os.environ['DATABASE_NAME']
         username = os.environ['DATABASE_USER']
         password = os.environ['DATABASE_PASSWORD']
 
