@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.8-slim
 
 ADD database.py /
 ADD etl.py /
@@ -6,7 +6,6 @@ ADD exceptions.py /
 ADD query_provider.py /
 ADD utils.py /
 
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 RUN python -m pip install --upgrade pip
 
 RUN pip3 install pandas
