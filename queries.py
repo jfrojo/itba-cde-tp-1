@@ -1,3 +1,4 @@
+import os
 from database import Database
 
 hostname = os.environ['DATABASE_HOSTNAME']
