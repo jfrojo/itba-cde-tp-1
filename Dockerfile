@@ -7,7 +7,7 @@ RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 RUN python -m pip install --upgrade pip
 RUN pip3 install psycopg2-binary
 
-ENV DATABASE_HOSTNAME=localhost
+ENV DATABASE_HOSTNAME=db
 ENV DATABASE_PORT=5432
 ENV DATABASE_NAME=postgres
 ENV DATABASE_USER=postgres
